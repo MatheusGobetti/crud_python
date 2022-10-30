@@ -1,0 +1,1 @@
+- Projeto em Python + SQLite para conclusão da disciplina de Tópicos Especiais na Fatec de Ribeirão Preto
