@@ -1,0 +1,15 @@
+.pagination {
+  width: 8rem;
+  padding: 5px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.previous {
+  font-size: 20px;
+}
+
+.next {
+  font-size: 20px;
+}

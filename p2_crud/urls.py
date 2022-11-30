@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app import views
+from app.views import home, form, create, view, edit, update, delete, json, json_txt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
-    path('form/', views.form)
+    path('', home, name='home'),
+    path('json', json, name='json'),
+    path('json_txt', json_txt, name='json_txt'),
+    path('form/', form, name='form'),
+    path('create/', create, name='create'),
+    path('view/<int:pk>/', view, name='view'),
+    path('edit/<int:pk>/', edit, name='edit'),
+    path('update/<int:pk>/', update, name='update'),
+    path('delete/<int:pk>/', delete, name='delete'),
 ]

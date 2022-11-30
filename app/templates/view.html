@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="col-8 m-auto pt-2 pb-2 text-center">
+      <h1>Visualização</h1>
+    </div>
+
+    <div class="col-8 m-auto pt-3 pb-2 text-center">
+      <a href="/" class="btn btn-info">Voltar</a>
+    </div>
+
+    <div class="col-8 m-auto pt-3 pb-2 text-center">
+      <strong>Endereço: </strong>{{db.endereco}}<br />
+      <strong>Número: </strong>{{db.numero}}<br />
+      <strong>Complemento: </strong>{{db.complemento}}<br />
+      <strong>Bairro: </strong>{{db.bairro}}<br />
+      <strong>Cidade: </strong>{{db.cidade}}<br />
+      <strong>Estado: </strong>{{db.estado}}<br />
+      <strong>Preço do aluguel: </strong>{{db.preco_aluguel}}<br />
+      <strong>Preço de venda: </strong>{{db.preco_venda}}<br />
+      <strong>CPF do proprietário: </strong>{{db.cpf_proprietario}}<br />
+    </div>
+  </body>
+</html>

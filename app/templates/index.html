@@ -11,6 +11,8 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
   </head>
   <body>
     <div class="col-8 m-auto pt-2 pb-2 text-center">
@@ -21,37 +23,69 @@
       <a href="/form" class="btn btn-success">Adicionar</a>
     </div>
 
-    <div class="col-8 m-auto pt-4 pb-2 text-center">
+    <div class="col-8 m-auto pt-3 pb-2 text-center d-flex w-75">
+      <div class="m-2">
+        <a href="/" class="btn btn-secondary">Home</a>
+      </div>
+      <form method="get" class="m-2">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          class="form-control"
+          placeholder="Buscar"
+        />
+      </form>
+    </div>
+
+    <div class="col-8 m-auto pt-3 pb-2 text-center">
+      <a href="{% url 'json_txt' %}" class="btn btn-info">Export</a>
+    </div>
+
+    <div class="col-8 m-auto pt-4 pb-2 w-75 text-center">
       <table class="table">
         <thead class="table-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ID</th>
+            <th scope="col">Endereco</th>
+            <th scope="col">Número</th>
+            <th scope="col">Complemento</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Preço do aluguel</th>
+            <th scope="col">Preço de venda</th>
+            <th scope="col">CPF do proprietário</th>
+            <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
+          {% for dbs in db %}
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{dbs.id}}</th>
+            <td>{{dbs.endereco}}</td>
+            <td>{{dbs.numero}}</td>
+            <td>{{dbs.complemento}}</td>
+            <td>{{dbs.bairro}}</td>
+            <td>{{dbs.cidade}}</td>
+            <td>{{dbs.estado}}</td>
+            <td>{{dbs.preco_aluguel}}</td>
+            <td>{{dbs.preco_venda}}</td>
+            <td>{{dbs.cpf_proprietario}}</td>
+            <td>
+              <a href="view/{{dbs.id}}/" class="btn btn-dark">Visualizar</a>
+              <a href="edit/{{dbs.id}}/" class="btn btn-primary">Editar</a>
+              <a href="delete/{{dbs.id}}/" class="btn btn-danger btnDel"
+                >Excluir</a
+              >
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
+
+    {% load static %}
+    <script src="{% static 'javascript.js' %}"></script>
   </body>
 </html>
