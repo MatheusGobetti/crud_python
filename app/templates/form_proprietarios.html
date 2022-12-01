@@ -14,39 +14,32 @@
   </head>
   <body>
     <div class="col-8 m-auto pt-2 pb-2 text-center">
-      <h1>Cadastro de imóveis</h1>
+      <h1>Cadastro de proprietários</h1>
     </div>
 
     <div class="col-8 m-auto pt-3 pb-2 text-center">
-      <a href="/home" class="btn btn-info">Voltar</a>
+      <a href="/index_proprietarios" class="btn btn-info">Voltar</a>
     </div>
     <div class="col-8 m-auto pt-4 pb-2 text-center">
       <div id="result"></div>
       <form
-        name="form"
-        id="form"
-        action="{% if db %}/update/{{db.id}}/{% else %}/create/{% endif %}"
+        name="form_proprietarios"
+        id="form_proprietarios"
+        action="{% if db_p %}/update_proprietarios/{{db_p.id}}/{% else %}/create_proprietarios/{% endif %}"
         method="post"
       >
         {% csrf_token %}
-        <div class="form-group mt-4">Endereço: {{form.endereco}}</div>
-        <div class="form-group mt-4">Número: {{form.numero}}</div>
-        <div class="form-group mt-4">Complemento: {{form.complemento}}</div>
-        <div class="form-group mt-4">Bairro: {{form.bairro}}</div>
-        <div class="form-group mt-4">Cidade: {{form.cidade}}</div>
-        <div class="form-group mt-4">Estado: {{form.estado}}</div>
+        <div class="form-group mt-4">Nome: {{form_proprietarios.nome}}</div>
+        <div class="form-group mt-4">Email: {{form_proprietarios.email}}</div>
         <div class="form-group mt-4">
-          Preço do aluguel: {{form.preco_aluguel}}
+          Telefone: {{form_proprietarios.telefone}}
         </div>
-        <div class="form-group mt-4">Preço da venda: {{form.preco_venda}}</div>
-        <div class="form-group mt-4">
-          CPF do Proprietário: {{form.cpf_proprietario}}
-        </div>
+        <div class="form-group mt-4">CPF: {{form_proprietarios.cpf}}</div>
         <input type="submit" class="btn btn-success mt-4" value="Salvar" />
       </form>
     </div>
 
     {% load static %}
-    <script src="{% static 'javascript.js' %}"></script>
+    <script src="{% static 'javascript_proprietarios.js' %}"></script>
   </body>
 </html>

@@ -1,11 +1,10 @@
-from shutil import make_archive
-from wsgiref.types import FileWrapper
 from django.shortcuts import render, redirect
-from app.forms import ResidenciasForm
-from app.models import Residencias
+from app.forms import ResidenciasForm, UsuariosForm, ProprietariosForm
+from app.models import Residencias, Usuarios, Proprietarios
 from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse
-import zipfile
+import urllib
+from django.core.management.base import BaseCommand
 
 # Create your views here.
 def home(request):
@@ -29,6 +28,10 @@ def json_txt(request):
   response.writelines(lines)
   return response
 
+def sobre(request):
+  return render(request, 'sobre.html')
+
+# Residencias operations:
 def form(request):
   data = {}
   data['form'] = ResidenciasForm()
@@ -64,3 +67,85 @@ def delete(request, pk):
   db.delete()
   return redirect('home')
 
+#Usuarios operations:
+def login(request):
+  data = {}
+  data['login_form'] = UsuariosForm()
+  return render(request, 'login.html', data)
+
+def validar_login(request, pk):
+  data = {}
+  data['db'] = Usuarios.objects.get(pk=pk)
+  return render(request, 'view.html', data)
+
+def cadastro_form(request):
+  data = {}
+  data['cadastro_form'] = UsuariosForm()
+  return render(request, 'cadastro.html', data)
+
+def create_cadastro(request):
+  form = UsuariosForm(request.POST or None)
+  if form.is_valid():
+    form.save()
+    return redirect('login')
+
+def update_cadastro(request, pk):
+  data = {}
+  data['db'] = Usuarios.objects.get(pk=pk)
+  form = UsuariosForm(request.POST or None, instance=data['db'])
+  if form.is_valid():
+    form.save()
+    return redirect('login')
+
+
+#Proprietarios operations:
+def index_proprietarios(request):
+  data = {}
+  data['db_p'] = Proprietarios.objects.all()
+  return render(request, 'index_proprietarios.html', data)
+
+def form_proprietarios(request):
+  data = {}
+  data['form_proprietarios'] = ProprietariosForm()
+  return render(request, 'form_proprietarios.html', data)
+
+def create_proprietarios(request):
+  form = ProprietariosForm(request.POST or None)
+  if form.is_valid():
+    form.save()
+    return redirect('index_proprietarios')
+
+def view_proprietarios(request, pk):
+  data = {}
+  data['db_p'] = Proprietarios.objects.get(pk=pk)
+  return render(request, 'view_proprietarios.html', data)
+
+def edit_proprietarios(request, pk):
+  data = {}
+  data['db_p'] = Proprietarios.objects.get(pk=pk)
+  data['form_proprietarios'] = ProprietariosForm(instance=data['db_p'])
+  return render(request, 'form_proprietarios.html', data)
+
+def update_proprietarios(request, pk):
+  data = {}
+  data['db_p'] = Proprietarios.objects.get(pk=pk)
+  form = ProprietariosForm(request.POST or None, instance=data['db_p'])
+  if form.is_valid():
+    form.save()
+    return redirect('form_proprietarios')
+
+def delete_proprietarios(request, pk):
+  db = Proprietarios.objects.get(pk=pk)
+  db.delete()
+  return redirect('form_proprietarios')
+
+#Import Data Operations:
+
+
+def import_residencia(data):
+  
+  url = "https://jsonplaceholder.typicode.com/users"
+  response = urllib.request.urlopen(url)
+  dados = response.read()
+  print('LENGTH: %d' %len(dados))
+  print(dados)

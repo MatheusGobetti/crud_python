@@ -1,0 +1,26 @@
+[
+  {
+    "id": 12,
+    "endereco": "Av. Profa Jucelia Lima",
+    "numero": 154,
+    "complemento": "Casa 742",
+    "bairro": "Vila Virginia",
+    "cidade": "Ribeirao Preto",
+    "estado": "SP",
+    "preco_aluguel": 2400.0,
+    "preco_venda": 400000.0,
+    "cpf_proprietario": "23439242394"
+  },
+  {
+    "id": 13,
+    "endereco": "Rua Conselheiro Saraiva",
+    "numero": 143,
+    "complemento": "Ap. 324",
+    "bairro": "Vila Tiberio",
+    "cidade": "Ribeirão Preto",
+    "estado": "SP",
+    "preco_aluguel": 900.0,
+    "preco_venda": 300000.0,
+    "cpf_proprietario": "23492349814"
+  }
+]
