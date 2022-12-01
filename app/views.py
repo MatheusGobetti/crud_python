@@ -4,7 +4,6 @@ from app.models import Residencias, Usuarios, Proprietarios
 from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse
 import urllib
-from django.core.management.base import BaseCommand
 
 # Create your views here.
 def home(request):
@@ -140,12 +139,19 @@ def delete_proprietarios(request, pk):
   return redirect('form_proprietarios')
 
 #Import Data Operations:
-
-
 def import_residencia(data):
-  
-  url = "https://jsonplaceholder.typicode.com/users"
+  url = "https://raw.githubusercontent.com/MatheusGobetti/crud_python/main/db.json"
   response = urllib.request.urlopen(url)
   dados = response.read()
   print('LENGTH: %d' %len(dados))
   print(dados)
+
+  #Func = open("app/templates/json_imported.html","w")
+  #Func.write(str(response.read()))
+  #Func.close()
+
+  return redirect('json_imported')
+
+def json_imported(request):
+  data = {}
+  return render(request, 'json_imported.html', data)

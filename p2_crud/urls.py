@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import home, form, create, view, edit, update, delete, json, json_txt, login, cadastro_form, create_cadastro, update_cadastro, sobre, form_proprietarios, index_proprietarios, create_proprietarios, edit_proprietarios, view_proprietarios, update_proprietarios, delete_proprietarios, import_residencia
+from app.views import home, form, create, view, edit, update, delete, json, json_txt, json_imported, login, cadastro_form, create_cadastro, update_cadastro, sobre, form_proprietarios, index_proprietarios, create_proprietarios, edit_proprietarios, view_proprietarios, update_proprietarios, delete_proprietarios, import_residencia
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +36,7 @@ urlpatterns = [
     path('home', home, name='home'),
     path('json', json, name='json'),
     path('json_txt', json_txt, name='json_txt'),
+    path('json_imported', json_imported, name='json_imported'),
     path('form/', form, name='form'),
     path('create/', create, name='create'),
     path('view/<int:pk>/', view, name='view'),
