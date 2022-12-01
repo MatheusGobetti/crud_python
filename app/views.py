@@ -143,11 +143,12 @@ def import_residencia(data):
   url = "https://raw.githubusercontent.com/MatheusGobetti/crud_python/main/db.json"
   response = urllib.request.urlopen(url)
   dados = response.read()
-  print('LENGTH: %d' %len(dados))
   print(dados)
 
+  # Esse código escreve o JSON no HTML, porém, não consegui implementar ele com o html
   #Func = open("app/templates/json_imported.html","w")
-  #Func.write(str(response.read()))
+  #Func.write(str(dados).replace('\\n', ''))
+  #Func.write(str(dados[1:]))
   #Func.close()
 
   return redirect('json_imported')
